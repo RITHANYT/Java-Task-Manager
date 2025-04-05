@@ -15,7 +15,9 @@ public class TaskManager {
             System.out.println("3.View Task");
             System.out.println("4.Mark Task as Completed");
             System.out.println("5.Exit");
+            System.out.println("6.Edit Task");
             System.out.println("Enter your choice");
+
 
             int choice = sc.nextInt();
             sc.nextLine();
@@ -57,6 +59,12 @@ public class TaskManager {
                     break;
 
                 case 3:
+                    System.out.println("View Options");
+                    System.out.println("1. All Tasks");
+                    System.out.println("2. Pending Tasks");
+                    System.out.println("3. Completed Tasks");
+                    int viewOption = sc.nextInt();
+                    sc.nextLine();
                     System.out.println("Your Tasks");
                     if(tasks.isEmpty()){
                         System.out.println("No Tasks available!");
@@ -64,7 +72,16 @@ public class TaskManager {
                     else{
                         Collections.sort(tasks);
                         for (int i=0;i<tasks.size();i++){
-                            System.out.println((i+1) + ". " + tasks.get(i));
+                            Task t = tasks.get(i);
+                            boolean show = switch (viewOption){
+                                case 1 -> true;
+                                case 2 -> !t.isCompleted();
+                                case 3 -> t.isCompleted();
+                                default -> false;
+                            };
+                            if(show){
+                                System.out.println((i+1)+". "+t);
+                            }
                         }
                     }
                     break;
@@ -85,6 +102,55 @@ public class TaskManager {
                     System.out.println("Exiting task Manager.....");
                     sc.close();
                     return;
+                case 6:
+                    System.out.println("Enter the task number to edit: ");
+                    int editIndex = sc.nextInt()-1;
+                    sc.nextLine();
+                    if(editIndex>=0 && editIndex<tasks.size()){
+                        Task taskToEdit = tasks.get(editIndex);
+
+                        System.out.println("What do you want to edit?");
+                        System.out.println("1. Description");
+                        System.out.println("2. Priority");
+                        System.out.println("3. Due Date");
+                        System.out.print("Enter your choice: ");
+                        int editChoice = sc.nextInt();
+                        sc.nextLine();
+
+                        switch (editChoice){
+                            case 1:
+                                System.out.println("Enter new description: ");
+                                String newDesc = sc.nextLine();
+                                taskToEdit.setDescription(newDesc);
+                                break;
+                            case 2:
+                                System.out.println("Enter new priority: ");
+                                String newPriority = sc.nextLine();
+                                taskToEdit.setPriority(newPriority);
+                                break;
+                            case 3:
+                                System.out.println("Enter the due date(dd-MM-yyyy)");
+                                String newDue = sc.nextLine().trim();
+                                if (!newDue.isEmpty()){
+                                    try {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                                        Date newDate = sdf.parse(newDue);
+                                        taskToEdit.setDueDate(newDate);
+                                    }catch (Exception e){
+                                        System.out.println("Invalid date format");
+                                    }
+                                    }else {
+                                    taskToEdit.setDueDate(null);
+                                }
+                                break;
+                            default:
+                                System.out.println("Invalid choice");
+                        }
+                        System.out.println("Task updated successfully");
+                        }else {
+                        System.out.println("Invalid Task number");
+                    }
+                    break;
                 default:
                     System.out.println("Invalid choice try again..");
             }

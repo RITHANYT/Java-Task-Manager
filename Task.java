@@ -7,6 +7,31 @@ public class Task implements Comparable<Task>,Serializable {
     private boolean isCompleted;
     private String priority;
     private Date dueDate;
+    public boolean isCompleted(){
+        return isCompleted;
+    }
+   public String getDescription(){
+       return description;
+   }
+   public void setDescription(String description){
+       this.description = description;
+   }
+   public String getPriority(){
+       return priority;
+   }
+   public void setPriority(String priority){
+       this.priority = priority;
+   }
+   public Date getDueDate(){
+       return dueDate;
+   }
+   public void setDueDate(Date dueDate){
+       this.dueDate = dueDate;
+   }
+   public String getFormattedDueDate(){
+       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+       return (dueDate!=null)? sdf.format(dueDate):"No due Date";
+   }
     public Task(String description, String priority, Date dueDate){
         this.description=description;
         this.isCompleted = false;
@@ -24,10 +49,7 @@ public class Task implements Comparable<Task>,Serializable {
             default -> 0;
         };
     }
-    private String getFormattedDueDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        return (dueDate!=null)? sdf.format(dueDate):"No Due Date";
-    }
+
     @Override
     public int compareTo(Task other){
         return Integer.compare(other.getPriorityValue(),this.getPriorityValue());
