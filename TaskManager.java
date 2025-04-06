@@ -144,11 +144,11 @@ public class TaskManager {
                                 }
                                 break;
                             default:
-                                System.out.println("Invalid choice");
+                                System.out.println("Invalid choice!");
                         }
-                        System.out.println("Task updated successfully");
+                        System.out.println("Task updated successfully!");
                         }else {
-                        System.out.println("Invalid Task number");
+                        System.out.println("Invalid Task number!");
                     }
                     break;
                 default:
