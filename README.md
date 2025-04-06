@@ -11,7 +11,8 @@ A simple console-based task manager built using Java.
 7. View All Tasks (sortd by due date) 
 8. Mark a Task as Completed
 9. Save/load tasks using file serialization("task.dat")
-
+10.Edit task description, priority, or due date
+   
 ## Technologies 
  -- JAVA 
  -- File I/O with 'ObjctInputStream' and 'ObjctOutputStram'
@@ -32,6 +33,7 @@ TASK MANAGER
 3.View Task
 4.Mark Task as Completed
 5.Exit
+6.Edit Task
   
 ## Author  
  **Rithanya T** | Passionate Java Developer 🚀  
