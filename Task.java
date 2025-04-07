@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 public class Task implements Comparable<Task>,Serializable {
     private static final long serialVersionUID = 1L;
@@ -56,7 +57,41 @@ public class Task implements Comparable<Task>,Serializable {
     }
     @Override
     public String toString(){
-        String status = isCompleted ? "[Completed]":"[Pending]";
-        return description + " (" + priority + ", Due: " + getFormattedDueDate() + ") " + status;
-    }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String status = isCompleted?"Completed":"Pending";
+        String prioritystr = "Priority: "+priority;
+        String dueDateStr ="";
+        String timetag="";
+
+        if(dueDate!=null){
+            dueDateStr =" | Due: "+sdf.format(dueDate);
+            Date today = new Date();
+
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTime(today);
+            c2.setTime(dueDate);
+            c1.set(Calendar.HOUR_OF_DAY,0);
+            c1.set(Calendar.MINUTE,0);
+            c1.set(Calendar.SECOND,0);
+            c1.set(Calendar.MILLISECOND,0);
+            c2.set(Calendar.HOUR_OF_DAY,0);
+            c2.set(Calendar.MINUTE,0);
+            c2.set(Calendar.SECOND,0);
+            c2.set(Calendar.MILLISECOND,0);
+
+            if(c2.before(c1)){
+                timetag = "Overdue";
+            } else if (c2.equals(c1)) {
+                timetag = "Due Date";
+            }
+            else {
+                timetag = "Upcoming";
+            }
+
+        }else {
+            timetag = "No Due Date";
+        }
+        return  status+" "+description+" " +prioritystr +" "+dueDateStr+" "+timetag;
+        }
 }
