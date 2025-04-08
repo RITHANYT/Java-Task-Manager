@@ -14,10 +14,11 @@ A simple console-based task manager built using Java.
 10.Edit task description, priority, or due date
    
 ## Technologies 
- -- JAVA 
+ -- JAVA
  -- File I/O with 'ObjctInputStream' and 'ObjctOutputStram'
  -- Collctions API (ArrayList, HashMap)
- -- 'Comparable' intrfac for sorting tasks by du dat
+ -- 'Comparable' intrface for sorting tasks by due date
+ -- Export as CSV Format
   
 ## How to Run  
 1. Clone the repo:
@@ -34,6 +35,7 @@ TASK MANAGER
 4.Mark Task as Completed
 5.Exit
 6.Edit Task
-  
+7.Export Tasks to CSV
+8.Search Tasks Enter your choice: 
 ## Author  
  **Rithanya T** | Passionate Java Developer 🚀  
