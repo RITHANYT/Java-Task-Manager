@@ -12,7 +12,9 @@ A simple console-based task manager built using Java.
 8. Mark a Task as Completed
 9. Save/load tasks using file serialization("task.dat")
 10.Edit task description, priority, or due date
-   
+11. Export all tasks to a CSV file
+12. Auto-reminder: See tasks due in the next 3 days on startup
+     
 ## Technologies 
  -- JAVA
  -- File I/O with 'ObjctInputStream' and 'ObjctOutputStram'
